@@ -1,5 +1,5 @@
 # .gitmodules
-[submodule "notes/vllm/code/vllm_source/vllm"]
-    path = notes/vllm/code/vllm_source/vllm
-    url = https://github.com/vllm-project/vllm.git   # 或你的私有仓库URL
+[submodule "system"]
+    path = system
+    url =   https://github.com/ASCII-S/OutlinesNotesSystem.git # 或你的私有仓库URL
     branch = main                                     # 可选
