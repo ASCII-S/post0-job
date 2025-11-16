@@ -1,0 +1,130 @@
+精通大模型压缩技术:
+  display_name: 精通大模型压缩技术
+  current_xp: 90
+  current_level: 0
+  total_notes: 14
+  mastered_notes: 0
+  xp_history:
+    '2025-10-27': 30
+    '2025-10-30': 30
+    '2025-11-02': 30
+C++:
+  display_name: C++
+  current_xp: 0
+  current_level: 0
+  total_notes: 72
+  mastered_notes: 0
+  xp_history: {}
+DS:
+  display_name: DS
+  current_xp: 0
+  current_level: 0
+  total_notes: 0
+  mastered_notes: 0
+  xp_history: {}
+熟悉CPU架构:
+  display_name: 熟悉CPU架构
+  current_xp: 20
+  current_level: 0
+  total_notes: 1
+  mastered_notes: 0
+  xp_history:
+    '2025-10-30': 10
+    '2025-11-04': 10
+gemm-opt:
+  display_name: gemm-opt
+  current_xp: 0
+  current_level: 0
+  total_notes: 5
+  mastered_notes: 0
+  xp_history: {}
+cuda:
+  display_name: cuda
+  current_xp: 0
+  current_level: 0
+  total_notes: 77
+  mastered_notes: 0
+  xp_history: {}
+pytorch:
+  display_name: pytorch
+  current_xp: 0
+  current_level: 0
+  total_notes: 4
+  mastered_notes: 0
+  xp_history: {}
+深度学习:
+  display_name: 深度学习
+  current_xp: 0
+  current_level: 0
+  total_notes: 11
+  mastered_notes: 0
+  xp_history: {}
+vllm:
+  display_name: vllm
+  current_xp: 0
+  current_level: 0
+  total_notes: 27
+  mastered_notes: 0
+  xp_history: {}
+分布式通信:
+  display_name: 分布式通信
+  current_xp: 0
+  current_level: 0
+  total_notes: 6
+  mastered_notes: 0
+  xp_history: {}
+test:
+  display_name: test
+  current_xp: 0
+  current_level: 0
+  total_notes: 0
+  mastered_notes: 0
+  xp_history: {}
+熟悉大语言模型推理优化-技术层次:
+  display_name: 熟悉大语言模型推理优化-技术层次
+  current_xp: 120
+  current_level: 1
+  total_notes: 94
+  mastered_notes: 0
+  xp_history:
+    '2025-10-28': 20
+    '2025-10-30': 30
+    '2025-11-04': 70
+精通vllm源码:
+  display_name: 精通vllm源码
+  current_xp: 20
+  current_level: 0
+  total_notes: 3
+  mastered_notes: 0
+  xp_history:
+    '2025-10-27': 20
+操作系统:
+  display_name: 操作系统
+  current_xp: 0
+  current_level: 0
+  total_notes: 2
+  mastered_notes: 0
+  xp_history: {}
+Transformer:
+  display_name: Transformer
+  current_xp: 0
+  current_level: 0
+  total_notes: 36
+  mastered_notes: 0
+  xp_history: {}
+LeetcodeHot100:
+  display_name: LeetcodeHot100
+  current_xp: 0
+  current_level: 0
+  total_notes: 50
+  mastered_notes: 0
+  xp_history: {}
+_seeds:
+  display_name: _seeds
+  current_xp: 30
+  current_level: 0
+  total_notes: 8
+  mastered_notes: 0
+  xp_history:
+    '2025-11-02': 10
+    '2025-11-04': 20

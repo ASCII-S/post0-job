@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>outlines - Interview Preparation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="outlines文档">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <!-- 页面TOC插件样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/docsify-plugin-toc@1.3.1/dist/light.css">
+  <style>
+    :root {
+      --base-font-size: 16px;
+      --theme-color: #42b983;
+    }
+    @media screen and (max-width: 768px) {
+      .sidebar { font-size: 14px; }
+      .markdown-section { padding: 15px; }
+    }
+    .sidebar-nav ul { padding-left: 0; }
+    .sidebar-nav ul li { margin: 3px 0; }
+    pre { overflow-x: auto; }
+    
+    /* 数学公式样式优化 */
+    .markdown-section mjx-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+    }
+    .markdown-section mjx-container[display="true"] {
+      display: block !important;
+      margin: 1em 0;
+      padding: 0.5em 0;
+    }
+    mjx-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    /* 矩阵公式的容器优化 */
+    .markdown-section mjx-math {
+      display: inline-block;
+    }
+    /* 确保大型公式可以水平滚动 */
+    .markdown-section [class*="MJX"] {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    /* 块级公式居中显示 */
+    .markdown-section mjx-container[display="true"] {
+      text-align: center;
+    }
+    /* pmatrix 矩阵样式 */
+    mjx-mrow {
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    /* 任务列表复选框样式 */
+    .markdown-section input[type="checkbox"] {
+      margin-right: 0.5em;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    .markdown-section .task-list-item {
+      list-style-type: none;
+      margin-left: -1.5em;
+    }
+    .markdown-section ul.task-list {
+      padding-left: 2em;
+    }
+    .doc-meta {
+      background-color: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: #555;
+    }
+    .doc-meta .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+    .doc-meta .meta-label {
+      font-weight: 600;
+      margin-right: 4px;
+      color: #333;
+    }
+    .doc-meta .meta-value {
+      margin-right: 12px;
+    }
+    .doc-meta .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .doc-meta .meta-tag {
+      background-color: rgba(66, 185, 131, 0.12);
+      color: #37936c;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    
+    /* 回到顶部按钮样式 */
+    #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--theme-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #back-to-top:hover {
+      background-color: #369c6d;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    #back-to-top:active {
+      transform: translateY(-1px);
+    }
+    @media screen and (max-width: 768px) {
+      #back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+    
+    /* 返回上一页按钮样式 */
+    #back-button {
+      position: fixed;
+      top: 20px;
+      left: 320px; /* 侧边栏宽度约300px，留20px间距 */
+      width: 50px;
+      height: 50px;
+      background-color: var(--theme-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #back-button.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #back-button:hover {
+      background-color: #369c6d;
+      transform: translateX(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    #back-button:active {
+      transform: translateX(-1px);
+    }
+    @media screen and (max-width: 768px) {
+      #back-button {
+        top: 10px;
+        left: 10px; /* 移动端没有侧边栏，放在左上角 */
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">加载中...</div>
+  
+  <!-- 返回上一页按钮 -->
+  <button id="back-button" title="返回上一页">←</button>
+  
+  <!-- 回到顶部按钮 -->
+  <button id="back-to-top" title="回到顶部">↑</button>
+  
+  <!-- MathJax 配置 - 必须在 MathJax 库加载前配置 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        // 加载所有必要的包，支持矩阵、符号、三角函数等
+        packages: {
+          '[+]': ['base', 'ams', 'newcommand', 'configmacros', 'action', 'mathtools']
+        },
+        tags: 'ams',
+        // 定义额外的宏
+        macros: {
+          RR: '{\\mathbb{R}}',
+          bold: ['{\\mathbf{#1}}', 1]
+        }
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      },
+      svg: {
+        fontCache: 'global',
+        scale: 1.0,
+        minScale: 0.5,
+        mtextInheritFont: false,
+        merrorInheritFont: true,
+        mathmlSpacing: false,
+        skipAttributes: {},
+        exFactor: 0.5,
+        displayAlign: 'center',
+        displayIndent: '0'
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady().then(() => {
+            console.log('MathJax 已加载完成！支持矩阵、三角函数等高级特性。');
+          });
+        }
+      },
+      loader: {
+        load: ['[tex]/ams', '[tex]/mathtools']
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  
+  <script>
+    window.$docsify = {
+      name: 'outlines',
+      repo: '',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      homepage: 'gitpages/homepage.md',
+      relativePath: false,
+      alias: {
+        '/.*/_sidebar.md': '/gitpages/_sidebar.md'
+      },
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '搜索',
+        noData: '没有结果',
+        depth: 6
+      },
+      pagination: {
+        previousText: '上一篇',
+        nextText: '下一篇',
+        crossChapter: true
+      },
+      copyCode: {
+        buttonText: '复制',
+        errorText: '错误',
+        successText: '已复制'
+      },
+      // 页面右侧TOC配置
+      toc: {
+        tocMaxLevel: 5,
+        target: 'h1, h2, h3, h4, h5',
+        ignoreHeaders: ['<!-- {docsify-ignore} -->', '<!-- {docsify-ignore-all} -->']
+      },
+      // 自定义插件
+      plugins: [
+        function(hook, vm) {
+          var mathStore = {};
+          var mathId = 0;
+          var metadataStore = {};
+
+          function getRouteKey() {
+            if (!vm.route) {
+              return '#/';
+            }
+            return vm.route.file || vm.route.path || '#/';
+          }
+
+          function escapeHtml(value) {
+            return String(value)
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#39;');
+          }
+
+          function extractFrontmatter(rawContent, routeKey) {
+            var frontmatterRegex = /^---\n([\s\S]*?)\n---\n?/;
+            var match = rawContent.match(frontmatterRegex);
+
+            if (!match) {
+              metadataStore[routeKey] = null;
+              if (window.__DOC_METADATA && routeKey) {
+                delete window.__DOC_METADATA[routeKey];
+              }
+              return rawContent;
+            }
+
+            var metadata = {};
+            if (window.jsyaml && typeof window.jsyaml.load === 'function') {
+              try {
+                metadata = window.jsyaml.load(match[1]) || {};
+              } catch (error) {
+                console.warn('⚠️ frontmatter 解析失败:', routeKey, error);
+                metadata = {};
+              }
+            } else {
+              console.warn('⚠️ js-yaml 未加载，无法解析 frontmatter:', routeKey);
+              metadata = {};
+            }
+
+            if (typeof metadata !== 'object' || metadata === null) {
+              metadata = {};
+            }
+
+            metadataStore[routeKey] = metadata;
+            window.__DOC_METADATA = window.__DOC_METADATA || {};
+            window.__DOC_METADATA[routeKey] = metadata;
+
+            var body = rawContent.slice(match[0].length);
+            body = body.replace(/^\s+/, '');
+            return body;
+          }
+
+          function buildMetaHtml(metadata) {
+            if (!metadata || Object.keys(metadata).length === 0) {
+              return '';
+            }
+
+            var labels = {
+              difficulty: '难度',
+              mastery_level: '掌握度',
+              review_count: '复盘次数',
+              created: '创建日期',
+              last_reviewed: '最近复盘',
+              next_review: '下次复盘',
+              tags: '标签'
+            };
+
+            var order = [
+              'difficulty',
+              'mastery_level',
+              'review_count',
+              'created',
+              'last_reviewed',
+              'next_review'
+            ];
+
+            var rows = [];
+            var inlineItems = [];
+
+            order.forEach(function(key) {
+              var value = metadata[key];
+              if (value === undefined || value === null || value === '') {
+                return;
+              }
+              inlineItems.push(
+                '<span class="meta-label">' + escapeHtml(labels[key]) + '</span>' +
+                '<span class="meta-value">' + escapeHtml(value) + '</span>'
+              );
+            });
+
+            if (inlineItems.length > 0) {
+              rows.push('<div class="meta-row">' + inlineItems.join('') + '</div>');
+            }
+
+            if (Array.isArray(metadata.tags) && metadata.tags.length > 0) {
+              var tagsHtml = metadata.tags.map(function(tag) {
+                return '<span class="meta-tag">' + escapeHtml(tag) + '</span>';
+              }).join('');
+              rows.push('<div class="meta-tags" aria-label="标签">' + tagsHtml + '</div>');
+            }
+
+            Object.keys(metadata).forEach(function(key) {
+              if (order.indexOf(key) !== -1 || key === 'tags') {
+                return;
+              }
+              var value = metadata[key];
+              if (value === undefined || value === null || value === '') {
+                return;
+              }
+              var label = labels[key] || key;
+              rows.push(
+                '<div class="meta-row">' +
+                  '<span class="meta-label">' + escapeHtml(label) + '</span>' +
+                  '<span class="meta-value">' + escapeHtml(value) + '</span>' +
+                '</div>'
+              );
+            });
+
+            if (!rows.length) {
+              return '';
+            }
+
+            return '<section class="doc-meta" aria-label="文档元数据">' + rows.join('') + '</section>';
+          }
+
+          // 在 markdown 渲染之前处理 frontmatter 并保护数学公式
+          hook.beforeEach(function(content) {
+            // 注释掉自动滚动到顶部，改用滚动位置管理系统
+            // window.scrollTo(0, 0);
+            var routeKey = getRouteKey();
+
+            // 重置
+            mathStore = {};
+            mathId = 0;
+
+            // 解析 frontmatter
+            content = extractFrontmatter(content, routeKey);
+
+            // 修正相对路径
+            content = content.replace(/\(\.\.\/(notes\/[^\)]+)\)/g, function(match, path) {
+              var encodedPath = path.replace(/::/g, '%3A%3A');
+              return '(/' + encodedPath + ')';
+            });
+
+            // 1. 先保护块级公式 $$...$$ (必须在 $ 之前处理)
+            content = content.replace(/\$\$([\s\S]*?)\$\$/g, function(match) {
+              var id = 'MATH_BLOCK_' + (mathId++);
+              mathStore[id] = match;
+              return '<!--' + id + '-->';
+            });
+
+            // 2. 保护块级公式 \[...\]
+            content = content.replace(/\\\[([\s\S]*?)\\\]/g, function(match) {
+              var id = 'MATH_BLOCK_' + (mathId++);
+              mathStore[id] = match;
+              return '<!--' + id + '-->';
+            });
+
+            // 3. 保护行内公式 $...$
+            content = content.replace(/\$([^\$\n]+?)\$/g, function(match) {
+              var id = 'MATH_INLINE_' + (mathId++);
+              mathStore[id] = match;
+              return '<!--' + id + '-->';
+            });
+
+            // 4. 保护行内公式 \(...\)
+            content = content.replace(/\\\(([^\)]*?)\\\)/g, function(match) {
+              var id = 'MATH_INLINE_' + (mathId++);
+              mathStore[id] = match;
+              return '<!--' + id + '-->';
+            });
+
+            return content;
+          });
+
+          // 在 HTML 生成后，恢复数学公式、注入元数据并处理任务列表
+          hook.afterEach(function(html, next) {
+            // 恢复所有数学公式
+            html = html.replace(/<!--(MATH_(?:BLOCK|INLINE)_\d+)-->/g, function(match, id) {
+              return mathStore[id] || match;
+            });
+
+            // 处理任务列表（将 markdown 的 [ ] 和 [x] 转换为 HTML checkbox）
+            // 匹配 <li>- [ ] 或 <li>- [x] 格式
+            html = html.replace(/<li>-?\s*\[([ xX])\]\s*(.*?)<\/li>/g, function(match, check, text) {
+              var checked = (check.toLowerCase() === 'x') ? ' checked disabled' : ' disabled';
+              return '<li class="task-list-item"><input type="checkbox"' + checked + '> ' + text + '</li>';
+            });
+
+            // 为包含任务列表项的 <ul> 添加 task-list 类
+            html = html.replace(/<ul>([\s\S]*?task-list-item[\s\S]*?)<\/ul>/g, function(match) {
+              return match.replace('<ul>', '<ul class="task-list">');
+            });
+
+            var routeKey = getRouteKey();
+            var metadata = metadataStore[routeKey];
+            var metadataHtml = buildMetaHtml(metadata);
+            if (metadataHtml) {
+              html = metadataHtml + html;
+            }
+
+            next(html);
+          });
+
+          // 在每次页面渲染完成后，触发 MathJax 渲染，并暴露当前文档元数据
+          hook.doneEach(function() {
+            var routeKey = getRouteKey();
+            var metadata = metadataStore[routeKey] || null;
+            window.__CURRENT_DOC_METADATA = metadata;
+
+            if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+              MathJax.typesetClear();
+              MathJax.typesetPromise().then(function() {
+                console.log('✅ MathJax 渲染完成');
+              }).catch(function(err) {
+                console.error('❌ MathJax 渲染错误:', err);
+              });
+            }
+          });
+        }
+      ]
+    }
+  </script>
+  
+  <!-- 回到顶部按钮功能 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var backToTopBtn = document.getElementById('back-to-top');
+      
+      // 监听滚动事件，控制按钮显示/隐藏
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      });
+      
+      // 点击按钮，平滑滚动到顶部
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+  
+  <!-- 滚动位置管理 -->
+  <script>
+    (function() {
+      var scrollPositions = {};
+      var lastPath = window.location.hash;
+      var isNavigatingBack = false; // 标记是否为返回操作
+      var historyLength = window.history.length;
+      
+      // 保存当前页面的滚动位置
+      function saveScrollPosition() {
+        var currentPath = window.location.hash || '#/';
+        scrollPositions[currentPath] = window.pageYOffset || document.documentElement.scrollTop;
+        console.log('保存滚动位置:', currentPath, scrollPositions[currentPath]);
+      }
+      
+      // 监听路由变化
+      window.addEventListener('hashchange', function(e) {
+        // 保存上一个页面的滚动位置
+        if (lastPath) {
+          scrollPositions[lastPath] = window.pageYOffset || document.documentElement.scrollTop;
+          console.log('路由切换，保存滚动位置:', lastPath, scrollPositions[lastPath]);
+        }
+        
+        var currentPath = window.location.hash || '#/';
+        
+        // 检测是前进还是后退
+        var newHistoryLength = window.history.length;
+        var isBack = newHistoryLength < historyLength || isNavigatingBack;
+        historyLength = newHistoryLength;
+        
+        // 短暂延迟后处理滚动（等待 docsify 渲染完成）
+        setTimeout(function() {
+          if (isBack && scrollPositions[currentPath] !== undefined) {
+            // 后退且有保存的位置：恢复位置
+            console.log('返回操作，恢复滚动位置:', currentPath, scrollPositions[currentPath]);
+            window.scrollTo(0, scrollPositions[currentPath]);
+          } else {
+            // 前进或没有保存的位置：滚动到顶部
+            console.log('前进操作，滚动到顶部:', currentPath);
+            window.scrollTo(0, 0);
+          }
+          
+          // 重置返回标记
+          isNavigatingBack = false;
+        }, 150);
+        
+        // 更新当前路径
+        lastPath = currentPath;
+      });
+      
+      // 监听 popstate 事件（浏览器前进/后退按钮）
+      window.addEventListener('popstate', function() {
+        isNavigatingBack = true;
+      });
+      
+      // 页面卸载前保存滚动位置
+      window.addEventListener('beforeunload', saveScrollPosition);
+      
+      // 定期保存滚动位置（防止意外情况）
+      var saveScrollTimer;
+      window.addEventListener('scroll', function() {
+        clearTimeout(saveScrollTimer);
+        saveScrollTimer = setTimeout(saveScrollPosition, 200);
+      });
+      
+      // 暴露设置返回标记的方法给返回按钮使用
+      window.setNavigatingBack = function() {
+        isNavigatingBack = true;
+      };
+    })();
+  </script>
+  
+  <!-- 返回上一页按钮功能 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var backButton = document.getElementById('back-button');
+      
+      // 检测路由变化，显示/隐藏返回按钮
+      function updateBackButtonVisibility() {
+        var currentPath = window.location.hash;
+        
+        // 只在访问具体问题文档时显示（路径包含 /notes/）
+        // 例如: #/notes/熟悉大语言模型推理优化-技术层次/xxx.md
+        if (currentPath && currentPath.includes('/notes/') && window.history.length > 1) {
+          backButton.classList.add('show');
+        } else {
+          backButton.classList.remove('show');
+        }
+      }
+      
+      // 初始检查
+      updateBackButtonVisibility();
+      
+      // 监听路由变化
+      window.addEventListener('hashchange', updateBackButtonVisibility);
+      
+      // 点击按钮，返回上一页
+      backButton.addEventListener('click', function() {
+        if (window.history.length > 1) {
+          // 设置返回标记，以便恢复滚动位置
+          if (window.setNavigatingBack) {
+            window.setNavigatingBack();
+          }
+          window.history.back();
+        }
+      });
+    });
+  </script>
+  
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!-- 页面右侧TOC插件 -->
+  <script src="https://unpkg.com/docsify-plugin-toc@1.3.1/dist/docsify-plugin-toc.min.js"></script>
+  <!-- MathJax 数学公式渲染 -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.windsurf/
+.cursor/
+.obsidian/
+
+# 临时文件
+*.tmp
+*.bak
+*.backup
+.cache/
+**/.ipynb_checkpoints/
+
+# 自动生成的复习清单（每日更新）
+# reviewsToday.md
+
+# 复习清单归档（自动生成）
+reviewsArchived/
+system/
+
+# 知识图谱
+docs/
+
+# 日志
+*.log
+
+# 系统文件
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# 其他
+简历/
+
