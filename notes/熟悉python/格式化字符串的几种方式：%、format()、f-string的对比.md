@@ -1,10 +1,10 @@
 ---
 created: '2025-11-13'
-last_reviewed: null
-next_review: '2025-11-13'
+last_reviewed: '2025-11-16'
+next_review: '2025-11-18'
 review_count: 1
 difficulty: medium
-mastery_level: 0.0
+mastery_level: 0.23
 tags:
 - 熟悉python
 - 熟悉python/格式化字符串的几种方式：%、format()、f-string的对比.md
