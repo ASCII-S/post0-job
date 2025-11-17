@@ -1,0 +1,40 @@
+#
+# Git 自动化配置模板
+#
+# 使用方法：
+# 1. 将本文件复制到项目根目录的 config/git_config.yaml
+# 2. 按需填写用户名、邮箱、远程仓库等信息
+# 3. 运行 ./system/init.sh 将根据此配置自动完成 Git 初始化
+#
+git:
+  # 是否启用自动 Git 配置
+  enabled: true
+
+  # 是否在未初始化时自动执行 git init
+  initialize_repository: true
+
+  # 初始化完成后默认切换到的主分支名称
+  default_branch: "main"
+
+  user:
+    # Git 提交时使用的用户名
+    name: ""
+    # Git 提交时使用的邮箱
+    email: ""
+
+  remote:
+    # 是否自动配置远程仓库
+    enabled: false
+    # 远程仓库名称
+    name: "origin"
+    # 远程仓库地址，例如 git@github.com:username/repo.git
+    url: ""
+
+  commit:
+    # 默认提交信息模板（可在后续自动化脚本中使用，可包含占位符如 {date}）
+    message_template: "chore: 初始化知识库 - {date}"
+
+  push:
+    # 是否自动执行 git push（默认仅维持本地git，不推送）
+    enabled: true
+

@@ -1,0 +1,138 @@
+# 知识库配置文件
+
+# 路径配置
+paths:
+  notes_dir: "notes"
+  outlines_dir: "outlines"
+  scripts_dir: "scripts"
+  
+# 复习间隔配置（天数）
+review_intervals:
+  easy:
+    - 1    # 第1次复习
+    - 3    # 第2次
+    - 7    # 第3次
+    - 15   # 第4次
+    - 30   # 第5次
+    - 60   # 第6次
+    - 120  # 第7次及以后
+  medium:
+    - 1
+    - 2
+    - 5
+    - 10
+    - 21
+    - 45
+    - 90
+  hard:
+    - 1
+    - 1
+    - 3
+    - 7
+    - 14
+    - 30
+    - 60
+
+# 难度默认值
+default_difficulty: "medium"
+
+# 每日复习数量限制
+daily_review:
+  # 每个分类的最大显示数量（0表示不限制）
+  max_overdue: 10       # 已过期最多显示10个
+  max_today: 20         # reviewsToday最多显示20个
+  max_this_week: 30     # 本周计划最多显示30个
+  
+  # 排序权重（越大越优先）
+  # 将容易复习的放在前面，避免心态失衡
+  sort_weights:
+    created_new: 1.0       # 创建时间新的（天数越少越优先）
+    review_count: 2.0      # 复习次数多的（次数越多越优先）
+    difficulty_easy: 3.0   # 难度小的（easy > medium > hard）
+    tags_count: 0.5        # tags数量多的（数量越多越优先）
+
+# 自动链接配置
+auto_linking:
+  # 相似度阈值（0-1）
+  similarity_threshold: 0.3
+  # 最多推荐相关笔记数
+  max_suggestions: 5
+  # 关键词权重
+  keyword_weight: 0.6
+  # 标签权重
+  tag_weight: 0.4
+
+# 统计配置
+statistics:
+  # 生成图表
+  generate_charts: true
+  # 保留历史天数
+  history_days: 365
+
+# 知识图谱配置
+knowledge_graph:
+  # 是否生成HTML可视化
+  generate_html: true
+  # 最小连接强度（显示阈值）
+  min_connection_strength: 0.2
+  # 节点大小基于什么（review_count/links/both）
+  node_size_by: "both"
+
+# Git 自动提交配置
+git_auto_commit:
+  enabled: true
+  commit_message_template: "chore: 更新复习记录 - {date}"
+  
+  # 自动提交时包含的目录和文件（只提交笔记相关内容）
+  include_paths:
+    - "notes/"              # 笔记目录
+    - "outlines/"           # 大纲目录
+    - "config/"             # 配置目录
+    - "reviewsToday.md"         # reviewsToday清单
+
+# 备份配置
+backup:
+  enabled: true
+  frequency_days: 7
+  keep_backups: 10
+
+# 游戏化系统配置
+gamification:
+  enable: true
+  
+  # 数据存储路径
+  data_dir: "config/gamification"
+  
+  # 经验值获取规则
+  xp_rules:
+    review_easy: 5
+    review_medium: 10
+    review_hard: 20
+    first_mastery: 50  # 首次达到掌握度0.8
+  
+  # 主题等级定义（可在各主题数据中覆盖）
+  default_levels:
+    - name: "入门"
+      required_xp: 0
+      icon: "🌱"
+    - name: "初级"
+      required_xp: 100
+      icon: "📖"
+    - name: "中级"
+      required_xp: 300
+      icon: "📚"
+    - name: "高级"
+      required_xp: 600
+      icon: "🎓"
+    - name: "精通"
+      required_xp: 1000
+      icon: "👑"
+  
+  # 掌握度阈值
+  mastery_threshold: 0.8
+  
+  # 连击系统
+  streak:
+    enable: true
+    show_icon: true
+

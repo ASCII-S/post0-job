@@ -1,6 +1,6 @@
 ---
 created: '2025-11-17'
-last_reviewed: '2025-11-17'
+last_reviewed: null
 next_review: '2025-11-17'
 review_count: 0
 difficulty: medium
@@ -10,7 +10,6 @@ tags:
 - _seeds/待分类
 related_outlines: []
 ---
-
 # 如何保持Linux内核和软件的版本稳定性？如何维护？
 
 ## 面试标准答案（可背诵）
