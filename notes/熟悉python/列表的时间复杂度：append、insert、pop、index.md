@@ -1,3 +1,16 @@
+---
+created: '2025-11-17'
+last_reviewed: '2025-11-17'
+next_review: '2025-11-17'
+review_count: 0
+difficulty: medium
+mastery_level: 0.0
+tags:
+- 熟悉python
+- 熟悉python/列表的时间复杂度：append、insert、pop、index.md
+related_outlines: []
+---
+
 # 列表的时间复杂度：append、insert、pop、index
 
 ## 面试标准答案（可背诵）

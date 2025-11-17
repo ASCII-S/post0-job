@@ -1,6 +1,6 @@
 ---
 created: '2025-11-16'
-last_reviewed: '2025-11-16'
+last_reviewed: null
 next_review: '2025-11-16'
 review_count: 0
 difficulty: medium
@@ -10,7 +10,6 @@ tags:
 - _seeds/待分类
 related_outlines: []
 ---
-
 # WSL 如何配置 Jupyter 在本地使用
 
 ## 面试标准答案（可背诵）

@@ -33,7 +33,7 @@
 **列表（List）**
 - [列表的底层实现原理（动态数组）](../notes/熟悉python/列表的底层实现原理（动态数组）.md)
 - [列表的时间复杂度：append、insert、pop、index](../notes/熟悉python/列表的时间复杂度：append、insert、pop、index.md)
-- 列表推导式与生成器表达式的区别
+- [列表推导式与生成器表达式的区别](../notes/熟悉python/列表推导式与生成器表达式的区别.md)
 - 浅拷贝与深拷贝的区别及应用场景
 - 列表切片的内存行为
 
