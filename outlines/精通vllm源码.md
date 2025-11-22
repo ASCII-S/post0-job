@@ -24,7 +24,7 @@
 #### 目录结构与模块
 1. 请描述vLLM源码的顶层目录结构，各个主要目录的作用是什么？
 2. [`vllm/`主目录下有哪些核心子模块？（如engine、worker、model_executor等）](../notes/精通vllm源码/vllm主目录下有哪些核心子模块？（如engine、worker、model_executor等）.md)
-3. `csrc/`目录存放的是什么代码？与Python代码如何交互？
+3. [`csrc/`目录存放的是什么代码？与Python代码如何交互？](../notes/精通vllm源码/`csrc/`目录存放的是什么代码？与Python代码如何交互.md)
 4. vLLM的CUDA kernel代码主要在哪些目录？使用了哪些技术栈？（CUDA、Triton等）
 5. 测试代码如何组织？单元测试和集成测试分别在哪里？
 
@@ -113,13 +113,13 @@
 **面试问题：**
 
 #### Engine初始化
-1. 请详细描述`LLMEngine.__init__()`的执行流程，都做了哪些初始化工作？
+1. [请详细描述`LLMEngine.__init__()`的执行流程，都做了哪些初始化工作？](../notes/精通vllm源码/请详细描述`LLMEngine.__init__()`的执行流程，都做了哪些初始化工作？.md)
 2. `_init_workers()`方法如何创建和初始化Worker进程？
 3. 在多GPU环境下，Engine如何分配Worker到不同的GPU？
 4. 模型加载的具体流程是什么？权重如何分配到各个Worker？
 
 #### Step执行循环
-1. 请详细解释`LLMEngine.step()`方法的完整执行流程
+1. [请详细解释`LLMEngine.step()`方法的完整执行流程](../notes/精通vllm源码/请详细解释`LLMEngine.step()`方法的完整执行流程.md)
 2. `step()`中如何调用Scheduler进行调度？返回的`SequenceGroupMetadata`包含什么信息？
 3. 如何将调度结果分发给各个Worker执行？
 4. Worker执行完成后，如何收集和处理结果？
@@ -164,7 +164,7 @@
 4. Recompute和Swap两种抢占策略的代码实现有何不同？
 
 #### 连续批处理实现
-1. 连续批处理（Continuous Batching）在Scheduler中如何体现？
+1. [连续批处理（Continuous Batching）在Scheduler中如何体现？](../notes/精通vllm源码/连续批处理（Continuous_Batching）在Scheduler中如何体现？.md)
 2. 当一个序列完成时，如何立即填充新序列？代码中如何处理？
 3. `_append_slot()`和`_allocate_and_set_running()`方法的作用是什么？
 4. [如何处理不同长度序列的批处理？Padding如何避免？](../notes/精通vllm源码/连续批处理中的序列长度不同，如何处理的？.md)

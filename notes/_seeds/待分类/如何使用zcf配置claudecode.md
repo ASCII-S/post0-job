@@ -1,3 +1,16 @@
+---
+created: '2025-11-23'
+last_reviewed: '2025-11-23'
+next_review: '2025-11-23'
+review_count: 0
+difficulty: medium
+mastery_level: 0.0
+tags:
+- _seeds
+- _seeds/待分类
+related_outlines: []
+---
+
 # 如何使用ZCF配置Claude Code
 
 ## 面试标准答案（可背诵）
